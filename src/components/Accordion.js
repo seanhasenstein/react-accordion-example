@@ -5,7 +5,7 @@ import SelectableContext from './SelectableContext';
 import AccordionToggle from './AccordionToggle';
 import AccordionCollapse from './AccordionCollapse';
 
-const Accordion = React.forwardRef((props, ref) => {
+const Accordion = props => {
   let {
     Component = 'div',
     activeKey,
@@ -19,13 +19,13 @@ const Accordion = React.forwardRef((props, ref) => {
   return (
     <AccordionContext.Provider value={activeKey}>
       <SelectableContext.Provider value={onSelect}>
-        <Component className="item" ref={ref} {...controlledProps}>
+        <Component className="item" {...controlledProps}>
           {children}
         </Component>
       </SelectableContext.Provider>
     </AccordionContext.Provider>
   );
-});
+};
 
 Accordion.Toggle = AccordionToggle;
 Accordion.Collapse = AccordionCollapse;

@@ -14,18 +14,20 @@ export function useAccordionToggle(eventKey, onClick) {
   };
 }
 
-const AccordionToggle = React.forwardRef(
-  ({ Component, children, eventKey, onClick, ...props }, ref) => {
-    const accordionOnClick = useAccordionToggle(eventKey, onClick);
+const AccordionToggle = ({
+  Component,
+  children,
+  eventKey,
+  onClick,
+  ...props
+}) => {
+  const accordionOnClick = useAccordionToggle(eventKey, onClick);
 
-    return (
-      <Component ref={ref} onClick={accordionOnClick} {...props}>
-        {children}
-      </Component>
-    );
-  }
-);
-
-AccordionToggle.displayName = 'AccordionToggle';
+  return (
+    <Component onClick={accordionOnClick} {...props}>
+      {children}
+    </Component>
+  );
+};
 
 export default AccordionToggle;
