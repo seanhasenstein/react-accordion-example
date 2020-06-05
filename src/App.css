@@ -1,3 +1,11 @@
+.collapse-content {
+  display: none;
+}
+
+.collapse-content.show {
+  display: block;
+}
+
 .App {
   text-align: center;
 }
