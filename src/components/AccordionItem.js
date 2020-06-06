@@ -11,11 +11,21 @@ const AccordionItem = ({ eventKey, item, activeKey, setActiveKey }) => {
 
   return (
     <li className="item">
-      <button className="toggle-content" onClick={handleClick}>
+      <button
+        className="accordion-header"
+        onClick={handleClick}
+        aria-expanded={activeKey === eventKey}
+        aria-controls={`accordion-panel-${eventKey}`}
+        id={`accordion-item-${eventKey}`}
+      >
         {item.toggle}
       </button>
       <div
-        className={`collapse-content ${activeKey === eventKey ? 'show' : ''}`}
+        id={`accordion-panel-${eventKey}`}
+        className={`accordion-panel ${activeKey === eventKey ? 'show' : ''}`}
+        aria-labelledby={`accordion-item-${eventKey}`}
+        role="region"
+        hidden={activeKey !== eventKey}
       >
         {item.content}
       </div>
