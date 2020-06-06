@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const AccordionItem = ({ eventKey, item, activeKey, setActiveKey }) => {
   const handleClick = () => {
@@ -20,6 +21,16 @@ const AccordionItem = ({ eventKey, item, activeKey, setActiveKey }) => {
       </div>
     </li>
   );
+};
+
+AccordionItem.propTypes = {
+  eventKey: PropTypes.number.isRequired,
+  item: PropTypes.shape({
+    toggle: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+  }),
+  activeKey: PropTypes.number,
+  setActiveKey: PropTypes.func.isRequired,
 };
 
 export default AccordionItem;
