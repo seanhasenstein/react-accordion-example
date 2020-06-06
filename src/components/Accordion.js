@@ -1,27 +1,16 @@
-import React from 'react';
-import { useUncontrolled } from 'uncontrollable';
+import React, { useState } from 'react';
 import AccordionContext from './AccordionContext';
 import SelectableContext from './SelectableContext';
 import AccordionToggle from './AccordionToggle';
 import AccordionCollapse from './AccordionCollapse';
 
-const Accordion = props => {
-  let {
-    Component = 'div',
-    activeKey,
-    children,
-    onSelect,
-    ...controlledProps
-  } = useUncontrolled(props, {
-    activeKey: 'onSelect',
-  });
+const Accordion = ({ children }) => {
+  const [activeKey, setActiveKey] = useState(undefined);
 
   return (
     <AccordionContext.Provider value={activeKey}>
-      <SelectableContext.Provider value={onSelect}>
-        <Component className="item" {...controlledProps}>
-          {children}
-        </Component>
+      <SelectableContext.Provider value={setActiveKey}>
+        <div className="item">{children}</div>
       </SelectableContext.Provider>
     </AccordionContext.Provider>
   );
